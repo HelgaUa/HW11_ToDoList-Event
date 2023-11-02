@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="js--btn1">Add link</button>
+    <button id="js--btn2" disabled>Go</button>
+<script>
+    const btn1 = document.getElementById('js--btn1');
+    const btn2 = document.getElementById('js--btn2');
+
+    btn1.addEventListener('click', () => {
+        let link = prompt('Add link');
+        if (link) {
+            localStorage.setItem('addedLink', link);
+            btn2.removeAttribute('disabled');
+        } else {
+            alert('Add a link, please');
+        }
+    });
+    btn2.addEventListener ('click', () =>  {
+    const getLink = localStorage.getItem('addedLink');
+        if(getLink) {
+            window.location.href = getLink;
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .js--btn_delete, .js--btn_add {
+            margin: 5px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskList = document.querySelector('.js--task-list');
+            taskList.addEventListener('click', (event) => {
+                if (event.target.classList.contains('js--btn_delete')) {
+                    event.target.parentElement.remove();
+                }
+            });
+
+            const btnAdd = document.querySelector('.js--btn_add');
+            const newTaskInput = document.getElementById('js--new-task');
+
+            btnAdd.addEventListener('click', () => {
+                const newTaskText = newTaskInput.value;
+                if (newTaskText) {
+                    const newTaskListItem = document.createElement('li');
+                    newTaskListItem.innerHTML = `${newTaskText} <button class="js--btn_delete">Delete</button>`;
+                    taskList.appendChild(newTaskListItem);
+                    newTaskInput.value = '';
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<ul class="js--task-list">
+    <li>Task 1<button class="js--btn_delete">Delete</button></li>
+    <li>Task 2<button class="js--btn_delete">Delete</button></li>
+    <li>Task 3<button class="js--btn_delete">Delete</button></li>
+</ul>
+<input type="text" id="js--new-task" name="new-task" value="Your task">
+<button class="js--btn_add">Add a task</button>
+</body>
+</html>
